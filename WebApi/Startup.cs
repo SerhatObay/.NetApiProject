@@ -45,6 +45,7 @@ namespace WebApi
             services.ConfigureRepositoryManager();
             services.ConfigureServiceManager();
             services.ConfigureLoggerService();
+            services.AddAutoMapper(typeof(Program));
 
             
         }

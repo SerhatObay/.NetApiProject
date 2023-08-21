@@ -43,6 +43,10 @@ namespace WebApi
                 .AddXmlDataContractSerializerFormatters()
                 .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
                 .AddNewtonsoftJson();
+            services.Configure<ApiBehaviorOptions>(option =>
+            {
+                option.SuppressModelStateInvalidFilter = true;
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });

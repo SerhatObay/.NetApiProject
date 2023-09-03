@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using NLog;
+using Presentation.ActionFilters;
 using Repositories.EFCore;
 using Services.Contracts;
 using System;
@@ -39,10 +40,13 @@ namespace WebApi
                 config.RespectBrowserAcceptHeader = true;
                 config.ReturnHttpNotAcceptable = true;
             })
-                .AddCustomCsvFormatter()
-                .AddXmlDataContractSerializerFormatters()
+                //.AddCustomCsvFormatter() csv format
+                //.AddXmlDataContractSerializerFormatters() xml format
                 .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
                 .AddNewtonsoftJson();
+
+            
+
             services.Configure<ApiBehaviorOptions>(option =>
             {
                 option.SuppressModelStateInvalidFilter = true;
@@ -56,8 +60,10 @@ namespace WebApi
             services.ConfigureServiceManager();
             services.ConfigureLoggerService();
             services.AddAutoMapper(typeof(Program));
+            services.ConfigureActionFilters();
 
-            
+
+
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

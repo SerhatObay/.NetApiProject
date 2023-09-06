@@ -61,6 +61,8 @@ namespace WebApi
             services.ConfigureLoggerService();
             services.AddAutoMapper(typeof(Program));
             services.ConfigureActionFilters();
+            services.ConfigureCors();
+
 
 
 
@@ -86,6 +88,7 @@ namespace WebApi
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("CorsPolicy");
 
             app.UseRouting();
 

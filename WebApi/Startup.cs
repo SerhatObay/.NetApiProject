@@ -62,6 +62,7 @@ namespace WebApi
             services.AddAutoMapper(typeof(Program));
             services.ConfigureActionFilters();
             services.ConfigureCors();
+            services.ConfigureDataShaper();
 
 
 
